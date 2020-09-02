@@ -13,7 +13,6 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
 
-  fill("white");
   ground = new Ground(240,780,480,20);
 
   wall = new Ground(0,700,5,150);
@@ -23,20 +22,28 @@ function setup() {
   wall5 = new Ground(360,700,5,150);
   wall6= new Ground(450,700,5,150);
 
+  for(var j = 40; j <= width; j = j + 50) {
+    plinkos.push(new Plinko(j,75,10));
+  }
+  
+  for(var j = 15; j <= width - 10; j = j + 50) {
+    plinkos.push(new Plinko(j,175,10));
+  }
+
+  for(var j = 40; j <= width; j = j + 50) {
+    plinkos.push(new Plinko(j,275,10));
+  }
+  
+  for(var j = 15; j <= width - 10; j = j + 50) {
+    plinkos.push(new Plinko(j,375,10));
+  }
+
 }
 
 function draw() {
   background(0);  
 
   Engine.update(engine);
-
-  for(var j = 40; j <= width; j = j + 50) {
-    plinkos.push(new plinkos(j,75));
-  }
-  
-  for(var j = 15; j <= width - 10; j = j + 50) {
-    plinkos.push(new plinkos(j,175));
-  }
 
   ground.display();
   
@@ -47,7 +54,15 @@ function draw() {
   wall5.display();
   wall6.display();
 
+  for(var i = 0; i < plinkos.length; i++) {
+    plinkos[i].display();
+  }
+
   createParticle();
+
+  for(var i = 0; i < particles.length; i++) {
+    particles[i].display();
+  }
 
   drawSprites();
 }
@@ -55,7 +70,5 @@ function draw() {
 function createParticle() {
   if(frameCount % 60 === 0) {
     particles.push(new Particle(random(width/2-10, width/2+10), 10, 10));
-
-    particlesGroup.add(particles);
   }
 }

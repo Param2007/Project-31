@@ -17,6 +17,7 @@ class Ground {
 
         var p = this.body.position;
 
+        fill("white");
         rectMode(CENTER);
         rect(p.x, p.y, this.width, this.height);
     }
